@@ -7,9 +7,9 @@ Add the corresponding code to accomplish the requested tasks
 
 
 ##### ADD YOUR NAME, Student ID, and Section number #######
-# NAME: 
-# STUDENT ID:
-# SECTION:
+# NAME: Jose Luis Quinones Velez
+# STUDENT ID: 843-18-5449
+# SECTION: CIIC 3015-096
 ###########################################################
 
 
