@@ -60,7 +60,17 @@ def find_consensus(countData):
     consensusString = ""
 
     # Loop here to find highest-occuring nucleotide in each column
-    # and concatenate them into consensusString
+    for map in countData:
+        maxValue = 0
+        maxKey = ""
+        # find highest-occuring nucleotide
+        for key in map:
+           if map[key] >= maxValue:
+               maxKey = key
+               maxValue = map[key]
+        # and concatenate them into consensusString
+        consensusString += maxKey
+    
     return consensusString
 
 
