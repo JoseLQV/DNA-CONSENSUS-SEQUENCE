@@ -14,13 +14,20 @@ Add the corresponding code to accomplish the requested tasks
 
 
 def load_data(fileName):
-    #Read DNA sequences from file and return them in a list.
     # Assume the file to be open exist
     dataList = list()
-    # Use dataList to save the the all data from the file 
-    # If file opens successfully, loop over the contents and store sequences in list.
-    # Skip description lines (lines that start with ">").
-
+    
+    #Read DNA sequences from file and return them in a list.
+    with open(fileName, "r") as file:
+        for line in file:
+            # Skip description lines (lines that start with ">").
+            if line.strip()[0] != ">":
+                # If file opens successfully, loop over the contents and store sequences in list.
+                sequence = line.strip().split()
+                
+                # Use dataList to save the the all data from the file 
+                dataList.append(sequence)
+            
     return dataList
 
 
