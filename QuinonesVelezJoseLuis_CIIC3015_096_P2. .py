@@ -23,23 +23,35 @@ def load_data(fileName):
             # Skip description lines (lines that start with ">").
             if line.strip()[0] != ">":
                 # If file opens successfully, loop over the contents and store sequences in list.
-                sequence = line.strip().split()
                 
                 # Use dataList to save the the all data from the file 
-                dataList.append(sequence)
+                dataList.append(line.strip())
             
     return dataList
 
 
 def count_nucl_freq(dataList):
     """Count the occurrences of characters by column."""
-    countStruct = list() # Indexed by columns (List of what?)
-
-    # Loop over the sequences in dataList to count the nucleotides
-    # We'll need a nested loop to process every character in every sequence.
+    countStruct = list({}) # Indexed by columns (List of what?) 
+    
     # Recommend: Use outer loop for columns (characters) and inner loop for
     # rows (sequences), since countStruct only cares about the characters (not the seqs).
+    
+    # # datalist = GATCAGCTAG
+    #              AATCCGATCG
+    #              AATGCGCTAG
+    #              ACTCTGCGTG
 
+    
+    # Loop over the sequences in dataList to count the nucleotides
+    for row,seq in enumerate(dataList):
+        for col,char in enumerate(seq):
+            if row == 0:
+                countStruct.append({"A":0,"G":0,"C":0,"T":0})
+            pos = countStruct[col]
+            if char in pos:
+                pos[char] += 1
+        
     return countStruct
     
 
