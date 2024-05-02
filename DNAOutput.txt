@@ -8,4 +8,4 @@ pos 6:   G:4  A:0  C:0  T:0
 pos 7:   C:3  A:1  G:0  T:0
 pos 8:   T:3  G:1  A:0  C:0
 pos 9:   A:2  T:1  C:1  G:0
-pos 10:   G:4  A:0  C:0  T:0
+pos 10:  G:4  A:0  C:0  T:0

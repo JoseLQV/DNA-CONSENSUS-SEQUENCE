@@ -87,10 +87,15 @@ def process_results(countData, outFilename):
     # have the count data for a column, in order of columns.
         for pos,map in enumerate(countData):
             
+            # initialize non increasing order string
+            if pos+1 < 10 :
+                orderedString = f"pos {pos+1}: "
+            else:
+                orderedString = f"pos {pos+1}:"
+            
             # Then loop, to print nucleotide count in non-increasing order.
             listed = list(map.items())
             orderedlist = []
-            orderedString = f"pos {pos+1}: "
             i = 0
             while len(listed) != 0:
                 tuple = listed[0]
@@ -104,8 +109,9 @@ def process_results(countData, outFilename):
                 orderedlist.append(max_tuple)
                 orderedString += f"  {max_tuple[0]}:{max_tuple[1]}"
             print(orderedString)            
-    # Each row in the output file (except the first one) should
-    # have the count data for a column, in order of columns.
+            
+            # Each row in the output file (except the first one) should
+            # have the count data for a column, in order of columns.
             w_file.write(orderedString+ "\n")
 
 
