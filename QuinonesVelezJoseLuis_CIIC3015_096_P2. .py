@@ -46,6 +46,7 @@ def count_nucl_freq(dataList):
     # Loop over the sequences in dataList to count the nucleotides
     for row,seq in enumerate(dataList):
         for col,char in enumerate(seq):
+            # initialize maps in the first sequence
             if row == 0:
                 countStruct.append({"A":0,"G":0,"C":0,"T":0})
             pos = countStruct[col]
@@ -58,6 +59,18 @@ def count_nucl_freq(dataList):
 def find_consensus(countData):
     """Return the consensus sequence according to highest-occuring nucleotides"""
     consensusString = ""
+
+#     countData = [
+# {'A': 3, 'G': 1, 'C': 0, 'T': 0}, 
+# {'A': 3, 'G': 0, 'C': 1, 'T': 0}, 
+# {'A': 0, 'G': 0, 'C': 0, 'T': 4}, 
+# {'A': 0, 'G': 1, 'C': 3, 'T': 0}, 
+# {'A': 1, 'G': 0, 'C': 2, 'T': 1}, 
+# {'A': 0, 'G': 4, 'C': 0, 'T': 0}, 
+# {'A': 1, 'G': 0, 'C': 3, 'T': 0}, 
+# {'A': 0, 'G': 1, 'C': 0, 'T': 3}, 
+# {'A': 2, 'G': 0, 'C': 1, 'T': 1}, 
+# {'A': 0, 'G': 4, 'C': 0, 'T': 0}]
 
     # Loop here to find highest-occuring nucleotide in each column
     for map in countData:
@@ -88,6 +101,8 @@ def process_results(countData, outFilename):
         for pos,map in enumerate(countData):
             
             # initialize non increasing order string
+            # Each row in the output file (except the first one) should
+            # have the count data for a column, in order of columns.
             if pos+1 < 10 :
                 orderedString = f"pos {pos+1}: "
             else:
@@ -97,21 +112,22 @@ def process_results(countData, outFilename):
             listed = list(map.items())
             orderedlist = []
             i = 0
+            #traverse tuples
             while len(listed) != 0:
                 tuple = listed[0]
                 max_tuple = tuple
+                 #find highest-value
                 for j in range(i+1,len(listed)):
                     next_tuple = listed[j]
                     if next_tuple[1] > tuple[1]:
                         max_tuple = next_tuple
-                        
+                #add highest value tuple in result (ordered List)        
                 listed.remove(max_tuple)
                 orderedlist.append(max_tuple)
                 orderedString += f"  {max_tuple[0]}:{max_tuple[1]}"
             print(orderedString)            
             
-            # Each row in the output file (except the first one) should
-            # have the count data for a column, in order of columns.
+
             w_file.write(orderedString+ "\n")
 
 
