@@ -77,12 +77,37 @@ def find_consensus(countData):
 def process_results(countData, outFilename):
     """Print consensus to screen and store results in output file."""
     consensus = find_consensus(countData)
-    print(consensus)
+    print("Consensus:",consensus)
 
     # Now open the output file, and write the consensus string.
-    # Then loop, to print nucleotide count in non-increasing order.
+    with open(outFilename,"w") as w_file:
+        orderedData = []
+                    
     # Each row in the output file (except the first one) should
     # have the count data for a column, in order of columns.
+        for pos,map in enumerate(countData):
+            
+            # Then loop, to print nucleotide count in non-increasing order.
+            listed = list(map.items())
+            orderedlist = []
+            orderedString = f"pos {pos+1}: "
+            i = 0
+            while len(listed) != 0:
+                tuple = listed[0]
+                max_tuple = tuple
+                for j in range(i+1,len(listed)):
+                    next_tuple = listed[j]
+                    if next_tuple[1] > tuple[1]:
+                        max_tuple = next_tuple
+                        
+                listed.remove(max_tuple)
+                orderedlist.append(max_tuple)
+                orderedString += f"  {max_tuple[0]}:{max_tuple[1]}"
+            print(orderedString)            
+    # Each row in the output file (except the first one) should
+    # have the count data for a column, in order of columns.
+            w_file.write(orderedString+ "\n")
+
 
 
 def main():
