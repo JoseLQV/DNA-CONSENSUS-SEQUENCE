@@ -81,7 +81,7 @@ def process_results(countData, outFilename):
 
     # Now open the output file, and write the consensus string.
     with open(outFilename,"w") as w_file:
-        orderedData = []
+        w_file.write(f"Consensus: {consensus}\n")
                     
     # Each row in the output file (except the first one) should
     # have the count data for a column, in order of columns.

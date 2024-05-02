@@ -1,3 +1,4 @@
+Consensus: AATCCGCTAG
 pos 1:   A:3  G:1  C:0  T:0
 pos 2:   A:3  C:1  G:0  T:0
 pos 3:   T:4  A:0  G:0  C:0
